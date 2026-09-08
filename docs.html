@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="config.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fort Knox Cat Docs</title>
+<meta name="description" content="Field manual for Fort Knox Cat, the cat that guards the gold nobody has audited" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/apple-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#0c0a07;--bg-2:#15110b;--gold:#e2b64a;--gold-l:#f6dc8a;--gold-d:#8f6a1c;--white:#f3ead6;--dim:#9a8d70;--line:rgba(226,182,74,.25);
+  --disp:"Cinzel",Georgia,serif;--type:"Inter",system-ui,sans-serif;--pad:clamp(16px,3vw,40px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--white);font-family:var(--type);font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px var(--pad);background:rgba(12,10,7,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.14em;color:var(--gold)}
+.brand img{width:28px;height:28px;border-radius:50%;border:1px solid var(--line)}
+.brand small{font-family:var(--type);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.top nav{display:flex;gap:6px}
+.btn{height:34px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 13px;font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);color:var(--white);background:rgba(12,10,7,.6)}
+.btn svg{width:13px;height:13px}
+.btn.buy{background:linear-gradient(180deg,var(--gold-l),var(--gold) 55%,var(--gold-d));color:#1a1204;border-color:var(--gold-d)}
+.btn.crumb{border-color:var(--gold);color:var(--gold)}
+.shell{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(20px,4vw,56px);width:min(1080px,100%);margin:0 auto;padding:34px var(--pad) 80px;min-width:0}
+.side{position:sticky;top:78px;align-self:start;display:flex;flex-direction:column;gap:2px}
+.kick{font-family:var(--disp);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.side a{font-size:13px;padding:6px 10px;color:var(--dim);border-left:2px solid transparent}
+.side a:hover{color:var(--white)}
+.side a.on{color:var(--white);border-left-color:var(--gold);background:rgba(226,182,74,.06)}
+.hero{margin-bottom:24px}
+.hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(24px,3.8vw,44px);line-height:1.1;letter-spacing:.12em;color:var(--gold)}
+.hero p{margin-top:12px;font-size:14px;line-height:1.55;max-width:60ch;white-space:pre-line}
+.sec{background:var(--bg-2);padding:clamp(16px,2.6vw,26px);margin-bottom:16px;border:1px solid var(--line)}
+.sec h2{font-family:var(--disp);font-weight:700;font-size:clamp(16px,2vw,22px);line-height:1.1;letter-spacing:.08em;margin-bottom:12px}
+.sec h2 i{font-style:normal;font-family:var(--type);font-size:10px;letter-spacing:.24em;color:var(--gold);display:block;margin-bottom:6px}
+.sec p{font-size:14px;line-height:1.6;max-width:68ch}
+.sec p + p{margin-top:8px}
+.rows{display:grid;margin-top:12px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:160px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.5}
+.row dt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding-top:4px}
+.tree{margin-top:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.6;white-space:pre;overflow-x:auto;padding:12px 14px;background:#070604;border:1px solid var(--line)}
+.tree b{color:var(--gold);font-weight:600}
+.kbd{display:inline-block;font-size:11px;padding:2px 7px;border:1px solid var(--line);color:var(--gold);margin:0 2px}
+.ca{display:grid;justify-items:center;gap:6px;max-width:100%;padding:12px 14px;margin-top:12px;background:#070604;border:1px solid var(--line);cursor:pointer}
+.ca small{font-family:var(--disp);font-size:10px;letter-spacing:.24em;color:var(--gold);white-space:nowrap}
+.ca b{font-family:var(--disp);font-weight:700;font-size:20px;white-space:nowrap;max-width:100%;color:var(--gold-l);letter-spacing:.08em}
+.ca.live b{font-family:var(--type);font-weight:500;font-size:clamp(10px,2.6vw,13.5px);letter-spacing:0}
+.ca .copy{display:inline-block;font:inherit;font-family:var(--disp);font-size:10px;letter-spacing:.16em;padding:5px 11px;background:transparent;color:var(--white);border:1px dashed rgba(243,234,214,.4);cursor:pointer}
+.ca.live{box-shadow:0 0 0 2px var(--gold-l)}
+.ca.live .copy{border-style:solid;border-color:var(--gold-l);color:var(--gold-l)}
+.links{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.faq{display:grid;gap:8px;margin-top:10px}
+.faq div{padding:10px 14px;background:#070604;border:1px solid var(--line)}
+.faq b{font-family:var(--disp);font-size:13px;letter-spacing:.06em;display:block;margin-bottom:3px;color:var(--gold)}
+.faq span{font-size:13.5px;line-height:1.5}
+.foot{width:min(1080px,100%);margin:0 auto;padding:0 var(--pad) 40px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:820px){
+  .shell{grid-template-columns:minmax(0,1fr);gap:16px;padding-top:18px}
+  main{min-width:0}
+  .side{position:static;flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:6px;scrollbar-width:none;max-width:100%}
+  .side .kick{display:none}
+  .side a{white-space:nowrap;font-size:12px;padding:5px 10px;border:1px solid var(--line);border-left:1px solid var(--line)}
+  .row{grid-template-columns:1fr;gap:3px}
+  .top nav .btn span{display:none}
+  .brand span{display:none}
+  .ca{width:100%}
+}
+.btn[data-link="x"] svg{width:16px;height:16px}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/"><img src="assets/favicon.png" alt="" /><span data-name>FORT KNOX CAT</span><small>docs</small></a>
+  <nav>
+    <a class="btn" href="/"><span>Vault</span></a>
+    <a class="btn buy" data-link="pons" href="https://www.ponsfamily.com/launchpad"><span>Buy</span><svg><use href="#i-pons"/></svg></a>
+    <a class="btn" data-link="x" href="https://x.com" aria-label="X"><svg><use href="#i-x"/></svg></a>
+    <span class="btn crumb">Docs</span>
+  </nav>
+</header>
+
+<div class="shell">
+  <aside class="side">
+    <span class="kick">Vault manual</span>
+    <a href="#what" class="on">What is this</a>
+    <a href="#door">The door</a>
+    <a href="#attempts">Audit attempts</a>
+    <a href="#site">Using the site</a>
+    <a href="#token">Token</a>
+    <a href="#local">Nothing is stored</a>
+    <a href="#faq">FAQ</a>
+  </aside>
+
+  <main>
+    <div class="hero">
+      <h1>FORT KNOX CAT, THE MANUAL</h1>
+      <p>Everything known about vault 07
+Which is less than the cat knows</p>
+    </div>
+
+    <section id="what" class="sec">
+      <h2><i>01 · OVERVIEW</i>What is <span data-name>Fort Knox Cat</span></h2>
+      <p>A white Persian cat sits on top of the gold in a vault that nobody has audited in living memory. Every auditor who came in got as far as the corridor. The cat has counted the bars. The cat is not sharing the number.</p>
+      <p>The site is the vault: a steel door with a combination dial you have to turn, and behind it the camera feed from the gold room. Heist-movie lighting, dust in the beams, one cat.</p>
+      <div class="rows">
+        <dl class="row"><dt>Character</dt><dd>A fluffy white Persian with a flat, unimpressed face. Sits on the pile, occasionally pushes a bar off</dd></dl>
+        <dl class="row"><dt>Place</dt><dd>Vault 07, an underground gold room with a round steel door and a cat flap in it</dd></dl>
+        <dl class="row"><dt>The format</dt><dd>A locked door, a dial, then a live camera with an audit button that never works</dd></dl>
+        <dl class="row"><dt>Chain</dt><dd>Robinhood Chain, token through the Pons launchpad</dd></dl>
+      </div>
+    </section>
+
+    <section id="door" class="sec">
+      <h2><i>02 · ENTRY</i>The door</h2>
+      <p>The dial needs three clicks. Turn it with the mouse wheel, drag it in a circle, tap it, or use the arrow keys. The number on the knob counts down. On the third click the door swings and the camera feed starts.</p>
+      <div class="tree"><b>dial</b>
+├── wheel        scroll over the door, the ring turns
+├── drag         grab the dial and turn it in a circle
+├── tap          each tap is a small turn, on a phone three or four taps
+├── keys         <span class="kbd">→</span> <span class="kbd">←</span> turn, <span class="kbd">Enter</span> is a full click
+└── skip         the small line under the dial, for people the cat already knows</div>
+    </section>
+
+    <section id="attempts" class="sec">
+      <h2><i>03 · RECORD</i>Audit attempts</h2>
+      <div class="tree"><b>attempts</b>
+├── one    the auditor, had a clipboard, the cat had the corridor
+├── two    night shift, came at night, the cat was on the pile
+└── three  the count, one bar fewer than yesterday, the cat was near it</div>
+    </section>
+
+    <section id="site" class="sec">
+      <h2><i>04 · CONTROLS</i>Using the site</h2>
+      <div class="rows">
+        <dl class="row"><dt>Camera</dt><dd>The gold room on a loop. The panel in the corner keeps the ledger: gold probably, bars counted by the cat, visitors denied</dd></dl>
+        <dl class="row"><dt>Request audit</dt><dd>The button in the bottom left. It files the request, the cat sits on it, the answer appears for two seconds</dd></dl>
+        <dl class="row"><dt>Attempts</dt><dd>Three records below the camera, click one to open it big, <span class="kbd">ESC</span> to close</dd></dl>
+        <dl class="row"><dt>Sound</dt><dd>Quiet until you tap. Your first click anywhere starts a slow stealth loop</dd></dl>
+        <dl class="row"><dt>The bar</dt><dd>At the bottom, one gold bar with the contract stamped into it, a copy button, BUY, X and this page</dd></dl>
+      </div>
+    </section>
+
+    <section id="token" class="sec">
+      <h2><i>05 · TOKEN</i>Token</h2>
+      <p>The token launches on Robinhood Chain through the Pons launchpad. The contract goes onto the gold bar at the bottom of the vault page and here. Until then both say soon and the copy button says not yet.</p>
+      <div class="ca" id="ca"><small>CONTRACT</small><b id="caVal">soon</b><button class="copy" id="caCopy">COPY</button></div>
+      <div class="links">
+        <a class="btn buy" data-link="pons" href="https://www.ponsfamily.com/launchpad">Buy on Pons<svg><use href="#i-pons"/></svg></a>
+        <a class="btn" data-link="x" href="https://x.com" aria-label="X"><svg><use href="#i-x"/></svg></a>
+      </div>
+      <div class="rows">
+        <dl class="row"><dt>Chain</dt><dd>Robinhood Chain, EVM, addresses start with 0x</dd></dl>
+        <dl class="row"><dt>Launchpad</dt><dd>Pons, ponsfamily.com. Buy opens the launchpad, and the token page once the address is in</dd></dl>
+        <dl class="row"><dt>Chart</dt><dd>DexScreener on Robinhood Chain once the token is live</dd></dl>
+      </div>
+    </section>
+
+    <section id="local" class="sec">
+      <h2><i>06 · PRIVACY</i>Nothing is stored</h2>
+      <p>No backend, no account, no cookies, nothing written to your browser. The dial forgets your combination the moment the door opens, the ledger is a drawing, the gold is a rumour.</p>
+      <div class="rows">
+        <dl class="row"><dt>Music</dt><dd>One CC0 stealth loop from OpenGameArt, plays after your first tap</dd></dl>
+        <dl class="row"><dt>Reduced motion</dt><dd>If your system asks for it, the door is skipped, the blinking and the shine sweeps stop, the camera still plays</dd></dl>
+        <dl class="row"><dt>Affiliation</dt><dd>None. Not a treasury, not a mint, not a real vault, not a real audit</dd></dl>
+      </div>
+    </section>
+
+    <section id="faq" class="sec">
+      <h2><i>07 · FAQ</i>Questions</h2>
+      <div class="faq">
+        <div><b>Is the gold there</b><span>Probably. The cat says so, and the cat is the only one who has been inside</span></div>
+        <div><b>Why has nobody audited it</b><span>Three tried. See the record. The corridor is short and the cat is in it</span></div>
+        <div><b>What is the combination</b><span>Three clicks in any direction. The cat is not strict, it is just there</span></div>
+        <div><b>Where did the missing bar go</b><span>Off the edge. The cat was near it. That is all the record says</span></div>
+        <div><b>What happens at launch</b><span>The contract goes onto the bar, the buy button starts pointing at the token page, the cat stays on the pile</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="foot"><span data-name>FORT KNOX CAT</span><span>Robinhood Chain · Pons · vault 07</span></footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-pons" viewBox="0 0 64 64"><path d="M14 8h24c11 0 18 7 18 17s-7 17-18 17h-9v12a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3z" fill="currentColor"/><path d="M29 20h8c4 0 6.5 2 6.5 5s-2.5 5-6.5 5h-8z" fill="#fff" opacity=".9"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 2H22l-7.1 8.1L23 22h-6.6l-5.2-6.8L5.3 22H2.1l7.6-8.7L1.5 2h6.7l4.7 6.2L18.9 2zm-1.1 18h1.8L7.3 3.9H5.4L17.8 20z"/></symbol>
+</svg>
+
+<script>
+(function(){
+  var S = window.SITE, CA = (S.CA||"SOON").trim(), HAS_CA = CA !== "SOON" && CA !== "";
+  document.querySelectorAll('[data-name]').forEach(function(e){ e.textContent = (e.closest('h2') ? S.NAME : S.NAME.toUpperCase()); });
+  document.title = S.NAME + ' Docs';
+  document.querySelectorAll('[data-link="pons"]').forEach(function(a){ a.href = HAS_CA ? window.PONS_HOME + '/' + CA : window.PONS_HOME; a.target='_blank'; a.rel='noopener'; });
+  document.querySelectorAll('[data-link="x"]').forEach(function(a){ a.href = S.X_URL || 'https://x.com'; a.target='_blank'; a.rel='noopener'; });
+  var caBox = document.getElementById('ca'), caVal = document.getElementById('caVal'), caCopy = document.getElementById('caCopy');
+  caVal.textContent = HAS_CA ? CA : 'soon';
+  if(HAS_CA){ caBox.classList.add('live'); caBox.title = CA; }
+  caBox.addEventListener('click', function(){ var old = caCopy.textContent; if(HAS_CA){ if(navigator.clipboard) navigator.clipboard.writeText(CA); caCopy.textContent = 'COPIED'; } else { caCopy.textContent = 'NOT YET'; } setTimeout(function(){ caCopy.textContent = old; }, 1100); });
+  var links = [].slice.call(document.querySelectorAll('.side a')), secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function spy(){ var y = window.scrollY + 120, cur = 0; secs.forEach(function(s, i){ if(s && s.offsetTop <= y) cur = i; }); links.forEach(function(a, i){ a.classList.toggle('on', i === cur); }); }
+  addEventListener('scroll', spy, { passive: true }); spy();
+})();
+</script>
+</body>
+</html>
